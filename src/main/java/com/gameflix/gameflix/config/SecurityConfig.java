@@ -15,7 +15,7 @@ public class SecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http
                     .authorizeHttpRequests(auth -> auth
-                            .antMatchers("/login", "/", "/register", "/game/*").permitAll() // lists out all the paths
+                            .antMatchers("/login", "/", "/register", "/game/*", "/game").permitAll() // lists out all the paths
                             // these listed are whitelist paths that dont need normal security.
                             .anyRequest().authenticated()
                     )
