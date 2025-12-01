@@ -30,6 +30,18 @@ import java.util.List;
             return gameRepository.findAll();
         }
 
+        @Override
+        public List<Game>getGamesByGenreAndRating(List <String> genre, List <String> rating) {
+
+            if ((genre == null || genre.isEmpty()) && (!rating.isEmpty() || rating != null)) {
+                // return gameRepository.searchByRating(genre);
+                return gameRepository.findByRatingIn(rating);
+            }
+            else if ((rating == null || rating.isEmpty()) && (!genre.isEmpty() || genre != null)) {
+                return gameRepository.findByGenreIn(genre);
+            }
+            else return gameRepository.searchByGenreAndRatingIn(genre, rating);
+        }
 
         @Override
         public void saveGame(Game Game) {
